@@ -3,7 +3,7 @@
 # GitRepo: https://github.com/twright-msft/mssql-server-rhel
 
 # Base OS layer: latest CentOS 7
-FROM centos:7
+FROM centos:centos7
 
 ### Atomic/OpenShift Labels - https://github.com/projectatomic/ContainerApplicationGenericLabels
 LABEL name="microsoft/mssql-server-linux" \
@@ -11,14 +11,14 @@ LABEL name="microsoft/mssql-server-linux" \
       version="14.0" \
       release="1" \
       summary="MS SQL Server" \
-      description="MS SQL Server is ....." \
+      description="MS SQL Server" \
 ### Required labels above - recommended below
       url="https://www.microsoft.com/en-us/sql-server/" \
       run='docker run --name ${NAME} \
-        -e ACCEPT_EULA=Y -e SA_PASSWORD=yourStrong@Password \
+        -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=yourStrong@Password \
         -p 1433:1433 \
         -d  ${IMAGE}' \
-      io.k8s.description="MS SQL Server is ....." \
+      io.k8s.description="MS SQL Server" \
       io.k8s.display-name="MS SQL Server"
 
 # Install latest mssql-server package
